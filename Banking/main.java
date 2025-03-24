@@ -4,6 +4,11 @@
  *
  * Joshua Hunter
  * 24/03/25-09/04/25
+ * 
+ * To do list:
+ * Set out framework for ArrayList with Arrays
+ * Lay out framework for VIEW, EDIT, MOVE, CLOSE
+ * Finish working on /\ as well as finishing OPEN and STOP
  */
 import java.util.Scanner;
 import java.io.File;
@@ -18,10 +23,52 @@ public class main
         System.out.print('\u000c');
         File bankData = new File("BankData.csv");
         Scanner Keyboard = new Scanner(System.in);
+        String mainInput;
+        String input;
+        boolean stillRunning = true;
+        boolean errorBlock;
+        //These 3 likely won't be permanent, but will help me with the process of creating accounts
+        String name;
+        String address;
+        String type;
         
-        CustomerInfo person1 = new CustomerInfo();
-        person1.infoCreator("David", 12345678, "10 Ruby St.", "Everyday", 0.0);
-        CustomerInfo person2 = new CustomerInfo();
-        person2.infoCreator("Bill", "23 Amethyst St.", "Everyday");
+        //This is where the banker will be able to do banking
+        System.out.println("Hello! I'll be your virtual banking assistant for today.");
+        while(stillRunning==true){
+            errorBlock = true;
+            System.out.println("What would you like help with today? You can: view or edit an account, move money in or out of an account, open or close and account, or end the software.");
+            System.out.println("Valid inputs are: VIEW, EDIT, MOVE, OPEN, CLOSE, STOP");
+            mainInput = Keyboard.nextLine();
+            mainInput = mainInput.toUpperCase();
+            
+            if(mainInput=="OPEN"){
+                while(errorBlock==true){
+                    System.out.println("Will this new account use a custom number and balance or will we start from scratch?");
+                    System.out.println("Valid inputs are: CUSTOM, NEW");
+                    input = Keyboard.nextLine();
+                    input = input.toUpperCase();
+                    
+                    /**
+                     * this will be where new info is created using the method in CustomerInfo
+                     */
+                    if(input=="CUSTOM"){
+                        
+                        errorBlock = false;
+                    }else if(input=="NEW"){
+                        
+                        errorBlock = false;
+                    }else{
+                        System.out.println("Bad input, please try again");
+                    }
+                }
+            }else if(mainInput=="STOP"){
+                /**
+                 * This will be where the updated information is saved to the file
+                 */
+                stillRunning = false;
+            }else{
+                System.out.println("Bad input, please try again");
+            }
+        }
     }
 }

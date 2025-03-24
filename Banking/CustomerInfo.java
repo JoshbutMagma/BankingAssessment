@@ -18,7 +18,6 @@ public class CustomerInfo
     private String accountAddress;
     private String accountType;
     private double accountBalance;
-    File bankData = new File("BankData.csv");
     Random Random = new Random();
     
     //Info creator with all info
@@ -31,7 +30,7 @@ public class CustomerInfo
         
         System.out.println(accountName + ", " + accountNumber + ", " + accountAddress + ", " + accountType + ", " + accountBalance);
     }
-    //Info Creator wiht just name, address, and type
+    //Info Creator with just name, address, and type
     public void infoCreator(String accountName, String accountAddress, String accountType){
         this.accountName = accountName;
         this.accountNumber = Random.nextInt(99999999);
