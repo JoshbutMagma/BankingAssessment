@@ -1,7 +1,6 @@
 #BlueJ class context
 comment0.target=CustomerInfo
-comment1.params=accountName\ accountNumber\ accountAddress\ accountType\ accountBalance
-comment1.target=void\ infoCreator(java.lang.String,\ int,\ java.lang.String,\ java.lang.String,\ double)
-comment2.params=accountName\ accountAddress\ accountType
-comment2.target=void\ infoCreator(java.lang.String,\ java.lang.String,\ java.lang.String)
-numComments=3
+comment1.params=accountName\ accountAddress\ accountType
+comment1.target=void\ infoCreator(java.lang.String,\ java.lang.String,\ java.lang.String)
+comment1.text=\ //Info\ creator\ with\ all\ info\r\n\ \ \ \ public\ void\ infoCreator(String\ accountName,\ String\ accountAddress,\ int\ accountNumber,\ String\ accountType,\ double\ accountBalance){\r\n\ \ \ \ \ \ \ \ this.accountName\ \=\ accountName;\r\n\ \ \ \ \ \ \ \ this.accountAddress\ \=\ accountAddress;\r\n\ \ \ \ \ \ \ \ this.accountNumber\ \=\ accountNumber;\r\n\ \ \ \ \ \ \ \ this.accountType\ \=\ accountType;\r\n\ \ \ \ \ \ \ \ this.accountBalance\ \=\ accountBalance;\r\n\ \ \ \ \ \ \ \ \r\n\ \ \ \ \ \ \ \ System.out.println(accountName\ +\ ",\ "\ +\ accountAddress\ +\ ",\ "\ +\ accountNumber\ +\ ",\ "\ +\ accountType\ +\ ",\ "\ +\ accountBalance);\r\n}
+numComments=2
