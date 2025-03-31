@@ -8,7 +8,7 @@
  * To do list:
  * Do SOMETHING with the ArrayList
  * Have the software auto remove old data
- * fix the thing where opening a new account deletes the old one
+ * Fix the thing where opening a new account deletes the old one
  * Have the software save to file when it closes as opposed to opening
  * Lay out framework for EDIT, MOVE, CLOSE
  * Finish working on /\ as well as finishing VIEW, STOP
@@ -28,10 +28,26 @@ public class main
      */
     private static String commaCheck(){
         Scanner Keyboard = new Scanner(System.in);
-        String input;
+        String input = "";
+        int subtract;
+        boolean errorCheck = true;
         
-        input = Keyboard.nextLine();
+        while(errorCheck){
+            input = Keyboard.nextLine();
+            if(input.length()>20){
+                System.out.println("Length error: input is too long. Please reinput using less than 20 characters.");
+                System.out.println("If you need to go over 20 characters, please abreviate longer names.");
+            }else{
+                errorCheck = false;
+            }
+        }
         input = input.replace(",","");
+        
+        //We'll be determining what in a string we'll be looking at based off of static positions in the string. This short addition allows us to have values of uniform length, allowing us to pinpoint exactly what we're looking at
+        subtract = 20-input.length();
+        for(int i=0; i<subtract; i++){
+            input = input.concat(" ");
+        }
         
         return input;
     }
@@ -48,8 +64,9 @@ public class main
         boolean stillRunning = true;
         boolean errorBlock;
         boolean rightType;
-        String name;
-        String address;
+        String name = "";
+        String outpName;
+        String address = "";
         String type = "";
         
         try{
@@ -77,11 +94,14 @@ public class main
                 /**
                  * This is where the client will be able to view all banking info
                  */
+                System.out.println();
                 System.out.println("You have selected 'view an account'.");
                 System.out.println("A full list of every account name:");
+                TestPerson.infoCreator(name, address, type);
                 for(int i=0; i<allAccounts.size(); i++){
-                    System.out.println(i + ". " + allAccounts.get(i));
+                    System.out.println((i+1) + ". " + allAccounts.get(i));
                 }
+                System.out.println();
             }else if(mainInput.equals("EDIT")){
                 /**
                  * This is where the client will be able to edit pre-existing info
@@ -95,12 +115,14 @@ public class main
                  * This will be where new info is created using the method in CustomerInfo
                  */
                 rightType = true;
+                System.out.println();
                 System.out.println("You have selected 'open a new account'.");
                 System.out.println("What is the name that the account should be opened under?");
                 System.out.print("The account name should be under: ");
                 name = commaCheck();
+                outpName = name.trim();
                 
-                System.out.println("What is the address for " + name);
+                System.out.println("What is the address for " + outpName);
                 System.out.print(name + " lives at: ");
                 address = commaCheck();
                 
@@ -111,11 +133,15 @@ public class main
                     type = Keyboard.nextLine();
                     type = type.toUpperCase();
                     if(type.equals("EVERYDAY")||type.equals("SAVINGS")||type.equals("CURRENT")){
+                        if(!type.equals("EVERYDAY")){
+                            type = type.concat(" ");
+                        }
                         rightType = false;
                     }else{System.out.println("Bad input, please try again");}
                 }
             
-                TestPerson.infoCreator(name, address, type);           
+                TestPerson.infoCreator(name, address, type);
+                System.out.println();
             }else if(mainInput.equals("CLOSE")){
                 /**
                  * This is where we can delete any pre-existing accounts
@@ -124,10 +150,12 @@ public class main
                 /**
                  * This will be where the updated information is saved to the file, and the software can be closed
                  */
+                System.out.println();
                 System.out.println("Changes saved to system, thank you for using the virtual banking assistant");
                 stillRunning = false;
             }else{
                 System.out.println("Bad input, please try again");
+                System.out.println();
             }
         }
     }

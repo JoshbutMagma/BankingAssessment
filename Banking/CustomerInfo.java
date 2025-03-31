@@ -15,13 +15,18 @@ import java.util.Arrays;
 public class CustomerInfo
 {
     //initialising variables.
+    File bankData = new File("BankData.csv");
+    Random Random = new Random();
+    
     private String accountName;
     private String accountAddress;
     private int accountNumber;
     private String accountType;
     private double accountBalance;
-    File bankData = new File("BankData.csv");
-    Random Random = new Random();
+    
+    private String tempName;
+    private String tempAddress;
+    private String tempType;
     
     //Info Creator with just name, address, and type
     public void infoCreator(String accountName, String accountAddress, String accountType){
@@ -48,7 +53,10 @@ public class CustomerInfo
     
     //Numerous getters for the various values
     public void infoPrinter(){
-        System.out.println("The account is under the name " + accountName + " who lives at " + accountAddress + ", the bank number is " + accountNumber + ", the account type is " + accountType + ", and the account balance is " + accountBalance);
+        tempName = accountName.trim();
+        tempAddress = accountAddress.trim();
+        tempType = accountType.trim();
+        System.out.println("The account is under the name " + tempName + " who lives at " + tempAddress + ", the bank number is " + accountNumber + ", the account type is " + tempType + ", and the account balance is " + accountBalance);
     }
     public String nameGetter(){
         return(this.accountName);
