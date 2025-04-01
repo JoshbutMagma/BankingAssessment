@@ -68,16 +68,17 @@ public class main
         String outpName;
         String address = "";
         String type = "";
+        String account;
         
-        try{
-            Scanner readInfo = new Scanner(bankData);
+        /**try{
+            Scanner readInfo = new Scanner("BankData.csv");
             
             while(readInfo.hasNextLine()){
                 allAccounts.add(readInfo.nextLine());
             }
         }catch(IOException e){
             System.out.println("Unexpected error, please try again");
-        }
+        }*/
         
         //This is where the banker will be able to do banking
         System.out.println("Hello! I'll be your virtual banking assistant for today.");
@@ -95,9 +96,8 @@ public class main
                  * This is where the client will be able to view all banking info
                  */
                 System.out.println();
-                System.out.println("You have selected 'view an account'.");
+                System.out.println("You have selected 'View an account'.");
                 System.out.println("A full list of every account name:");
-                TestPerson.infoCreator(name, address, type);
                 for(int i=0; i<allAccounts.size(); i++){
                     System.out.println((i+1) + ". " + allAccounts.get(i));
                 }
@@ -116,14 +116,14 @@ public class main
                  */
                 rightType = true;
                 System.out.println();
-                System.out.println("You have selected 'open a new account'.");
+                System.out.println("You have selected 'Open a new account'.");
                 System.out.println("What is the name that the account should be opened under?");
                 System.out.print("The account name should be under: ");
                 name = commaCheck();
                 outpName = name.trim();
                 
                 System.out.println("What is the address for " + outpName);
-                System.out.print(name + " lives at: ");
+                System.out.print(outpName + " lives at: ");
                 address = commaCheck();
                 
                 System.out.println("What type of account should this be?");
@@ -151,6 +151,18 @@ public class main
                  * This will be where the updated information is saved to the file, and the software can be closed
                  */
                 System.out.println();
+                    try{
+                    FileWriter writeInfo = new FileWriter("BankData.csv");
+                    
+                    for(String infoWriter:allAccounts){
+                        writeInfo.write(infoWriter + "\n");
+                    }
+                    
+                    writeInfo.flush();
+                    writeInfo.close();
+                }catch(IOException e){
+                    System.out.println("Unexpected error, please try again");
+                }
                 System.out.println("Changes saved to system, thank you for using the virtual banking assistant");
                 stillRunning = false;
             }else{

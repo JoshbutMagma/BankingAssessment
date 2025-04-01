@@ -40,7 +40,7 @@ public class CustomerInfo
         
         //This is where the info for the new account is saved to the file
         try{
-            FileWriter myWriter = new FileWriter(bankData);
+            FileWriter myWriter = new FileWriter("BankData.csv");
             
             myWriter.write(accountName + "," + accountAddress + "," + accountNumber + "," + accountType + "," + accountBalance);
             
@@ -58,7 +58,7 @@ public class CustomerInfo
         tempType = accountType.trim();
         System.out.println("The account is under the name " + tempName + " who lives at " + tempAddress + ", the bank number is " + accountNumber + ", the account type is " + tempType + ", and the account balance is " + accountBalance);
     }
-    public String nameGetter(){
+    /**public String nameGetter(){
         return(this.accountName);
     }
     public String addressGetter(){
@@ -72,7 +72,7 @@ public class CustomerInfo
     }
     public double balanceGetter(){
         return(this.accountBalance);
-    }
+    }*/
     
     //Numerous setters for the various values
     public void nameSetter(String newName){
@@ -88,7 +88,7 @@ public class CustomerInfo
     public void balanceChanger(String direction, double value){
         if(direction.equals("DEPOSIT")){
             this.accountBalance = accountBalance + value;
-        } else if(direction.equals("WITHDRAW")){
+        }else if(direction.equals("WITHDRAW")){
             this.accountBalance = accountBalance - value;
         }
     }
