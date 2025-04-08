@@ -6,10 +6,9 @@
  * 24/03/25-09/04/25
  * 
  * To do list:
- * Do SOMETHING with the ArrayList
  * Have the software auto remove old data
  * Fix the thing where opening a new account deletes the old one
- * Have the software save to file when it closes as opposed to opening
+ * Have the software save to file when it closes as opposed to opening an account
  * Lay out framework for EDIT, MOVE, CLOSE
  * Finish working on /\ as well as finishing VIEW, STOP
  */
@@ -55,7 +54,8 @@ public class main
     public static void main(String[] args){
         //Initialising file and variables
         System.out.print('\u000c');
-        File bankData = new File("BankData.csv");
+        File bankData = new File("BankData.txt");
+        Scanner readInfo = new Scanner("BankData.txt");
         Scanner Keyboard = new Scanner(System.in);
         CustomerInfo TestPerson = new CustomerInfo();
         ArrayList<String> allAccounts = new ArrayList<String>();
@@ -69,16 +69,13 @@ public class main
         String address = "";
         String type = "";
         String account;
+        double currentBalance;
+        double balanceMoved;
         
-        /**try{
-            Scanner readInfo = new Scanner("BankData.csv");
-            
-            while(readInfo.hasNextLine()){
-                allAccounts.add(readInfo.nextLine());
-            }
-        }catch(IOException e){
-            System.out.println("Unexpected error, please try again");
-        }*/
+        //This is where all the old info is inserted into the program
+        while(readInfo.hasNextLine()){
+            allAccounts.add(readInfo.nextLine());
+        }
         
         //This is where the banker will be able to do banking
         System.out.println("Hello! I'll be your virtual banking assistant for today.");
@@ -151,8 +148,8 @@ public class main
                  * This will be where the updated information is saved to the file, and the software can be closed
                  */
                 System.out.println();
-                    try{
-                    FileWriter writeInfo = new FileWriter("BankData.csv");
+                try{
+                    FileWriter writeInfo = new FileWriter("BankData.txt");
                     
                     for(String infoWriter:allAccounts){
                         writeInfo.write(infoWriter + "\n");

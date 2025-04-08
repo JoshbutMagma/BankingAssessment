@@ -37,18 +37,6 @@ public class CustomerInfo
         this.accountBalance = 0.0;
         
         infoPrinter();
-        
-        //This is where the info for the new account is saved to the file
-        try{
-            FileWriter myWriter = new FileWriter("BankData.csv");
-            
-            myWriter.write(accountName + "," + accountAddress + "," + accountNumber + "," + accountType + "," + accountBalance);
-            
-            myWriter.flush();
-            myWriter.close();
-        }catch(IOException e){
-            System.out.println("Unexpected error, please try again");
-        }
     }
     
     //Numerous getters for the various values
